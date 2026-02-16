@@ -24,10 +24,13 @@ services:
       timeout: 5s
       retries: 5
 
-  migrator:
-    depends_on:
-      postgres:
-        condition: service_healthy          # start after DB is healthy
+  # migrator:
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy          # start after DB is healthy
 
 volumes:
   postgres_data:                            # named volume for PG data
+
+networks:
+  backend_network:

@@ -1,10 +1,8 @@
 use crate::{
-    controller::health_check_controller, middleware::auth::require_auth, params, protect, AppState,
+    AppState, controller::health_check_controller, middleware::auth::require_auth, params, protect
 };
 use axum::{
-    middleware::{from_fn, from_fn_with_state},
-    routing::{delete, get, post, put},
-    Router,
+    Router, middleware::{from_fn, from_fn_with_state}, routing::{delete, get, post, put}
 };
 use tower_http::services::ServeDir;
 
@@ -210,8 +208,8 @@ pub fn coaching_sessions_routes(app_state: AppState) -> Router {
                 )
                 .route_layer(from_fn_with_state(
                     app_state.clone(),
-                    protect::coaching_sessions::read,
-                )),
+                    protect::coaching_sessions::read, // Migration candidate
+                ))
         )
         .merge(
             // PUT /coaching_sessions/:id

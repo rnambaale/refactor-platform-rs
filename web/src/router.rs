@@ -462,8 +462,6 @@ pub fn user_session_routes() -> Router {
     Router::new().route("/login", post(user_session_controller::login))
 }
 
-/// Routes for magic link token validation and account setup.
-/// These are unauthenticated — users access them via a link in their welcome email.
 fn magic_link_routes(app_state: AppState) -> Router {
     Router::new()
         .route("/magic-link/validate", get(magic_link_controller::validate))
